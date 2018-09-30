@@ -24,8 +24,8 @@
 		var sourceUrl = "http://reverbjs.org/Library/SampleBachCMinorPrelude.m4a";
 		var sourceNode = audioContext.createSourceFromUrl(sourceUrl, function() {
 	 	 sourceNode.connect(reverbNode);
-	 	/*var sourceNode2 = audioContext.createSourceFromUrl(sourceUrl, function() {
-	 	 sourceNode.connect(reverbNode2);*/
+	 	var sourceNode2 = audioContext.createSourceFromUrl(sourceUrl, function() {
+	 	 sourceNode.connect(reverbNode2);
 		});
 	</script>
 	<br><br>
