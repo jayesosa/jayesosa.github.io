@@ -12,6 +12,7 @@
 		// 2) Load the impulse response; upon load, connect it to the audio output.
 		var reverbUrl = "http://reverbjs.org/Library/YorkMinster.m4a";
 		var reverbUrl2 = "http://reverbjs.org/Library/ErrolBrickworksKiln.m4a";
+		var reverbUrl3 = "http://reverbjs.org/Library/FalklandPalaceRoyalTennisCourt.m4a";
 		
 		var reverbNode = audioContext.createReverbFromUrl(reverbUrl, function() {
 	 	 reverbNode.connect(audioContext.destination);
@@ -19,6 +20,10 @@
 		
 		var reverbNode2 = audioContext.createReverbFromUrl(reverbUrl2, function() {
 	 	 reverbNode2.connect(audioContext.destination);
+		});
+		
+		var reverbNode3 = audioContext.createReverbFromUrl(reverbUrl3, function() {
+	 	 reverbNode3.connect(audioContext.destination);
 		});
 
 		// 3) Load a test sound; upon load, connect it to the reverb node.
@@ -30,18 +35,28 @@
 		var sourceNode2 = audioContext.createSourceFromUrl(sourceUrl, function() {
 	 	 sourceNode2.connect(reverbNode2);
 		});
+		
+		var sourceNode3 = audioContext.createSourceFromUrl(sourceUrl, function() {
+	 	 sourceNode3.connect(reverbNode3);
+		});
 	</script>
 	<br><br>
 	<h3>
-		First Example
+		First Example: York Minster
+		<a href="javascript:sourceNode.start()">Play</a>
+		<a href="javascript:sourceNode.stop()">Stop</a>
+	</h3>
+	<br><br>
+	<h3>
+		Second Example: Errol Brickworks Kiln 
 		<a href="javascript:sourceNode2.start()">Play</a>
 		<a href="javascript:sourceNode2.stop()">Stop</a>
 	</h3>
 	<br><br>
 	<h3>
-		Second Example
-		<a href="javascript:sourceNode.start()">Play</a>
-		<a href="javascript:sourceNode.stop()">Stop</a>
+		Third Example: Falkland Palace Royal Tennis Court
+		<a href="javascript:sourceNode3.start()">Play</a>
+		<a href="javascript:sourceNode3.stop()">Stop</a>
 	</h3>
 </body>
 </html>
