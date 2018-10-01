@@ -1,5 +1,7 @@
 # jayesosa.github.io
-The Reverberator
+The Reverberator by Jaye Sosa
+
+The Reverberator uses a web audio API extension called Reverb.js that creates reverb nodes. An audio file, Bach's Prelude in C minor in this case, will be convolved with various examples within a impulse-response reverb library.
 
 INSTRUCTIONS
 
