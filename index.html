@@ -1,8 +1,25 @@
 </head>
 <style>
-div.a {
-    text-align: center;
-}
+	div.a {
+	    text-align: center;
+	}
+
+	div.fixed{
+		position: fixed;
+		width: 50%;
+		bottom: 10px;
+		}
+
+	body {
+		background-color: honeydew
+	}
+	h3{
+		color: white;
+	}
+	p{
+		font-family: verdana;
+		font-size: 20px;
+	}
 </style>
 <body>
 	<div class = "a">
@@ -11,10 +28,15 @@ div.a {
 		with convolution reverb from various impulse responses of different spaces. 	
 	</body>
 	<br><br>
-	<body> Using reverb.js </body> 
+	<body> 
+		Using reverb.js with the project dedicated to the public domain via the CC0 license.
+		<a href = "http://reverbjs.org/"> Reverb.js source site</a> 
+	</body> 
 	<br><br>
 	<body> Reminder: Turn on 'Load unsafe scripts' at the far right of URL bar when it gives the 'Insecure Content Blocked' error and proceed to refresh the page.
-		
+	</body>
+	<br><br>
+	<body> Heads up: This project is still in the works. Please be patient and refresh the page if you wish to start and stop a sound file more than once. 
 	</body>
 	
 	<script src="http://reverbjs.org/reverb.js"></script>
@@ -22,7 +44,6 @@ div.a {
 		// 1) Setup your audio context (once) and extend with Reverb.js.
 		var audioContext = new (window.AudioContext || window.webkitAudioContext)();
 		reverbjs.extend(audioContext);
-
 		// 2) Load the impulse response; upon load, connect it to the audio output.
 		var reverbUrl = "http://reverbjs.org/Library/YorkMinster.m4a";
 		var reverbUrl2 = "http://reverbjs.org/Library/ErrolBrickworksKiln.m4a";
@@ -39,7 +60,6 @@ div.a {
 		var reverbNode3 = audioContext.createReverbFromUrl(reverbUrl3, function() {
 	 	 reverbNode3.connect(audioContext.destination);
 		});
-
 		// 3) Load a test sound; upon load, connect it to the reverb node.
 		var sourceUrl = "http://reverbjs.org/Library/SampleBachCMinorPrelude.m4a";
 		var sourceNode = audioContext.createSourceFromUrl(sourceUrl, function() {
@@ -56,30 +76,44 @@ div.a {
 	</script>
 	<br><br>
 	<h3>
-		First Example: York Minster
+		First Example: York Minster 
+		<br>
+		<h4>
+			License for this content: Attribution Share Alike Creative Commons license
+		</h4>
 		<br>
 		<a href="javascript:sourceNode.start()">Play</a>
+		&nbsp;
 		<a href="javascript:sourceNode.stop()">Stop</a>
 	</h3>
 	<br><br>
 	<h3>
 		Second Example: Errol Brickworks Kiln 
 		<br>
+		<h4>
+			License for this content: Attribution Non-commercial Share Alike Creative Commons license
+		</h4>
+		<br>
 		<a href="javascript:sourceNode2.start()">Play</a>
+		&nbsp;
 		<a href="javascript:sourceNode2.stop()">Stop</a>
-	</h3>
+	</h3>s
 	<br><br>
 	<h3>
 		Third Example: Falkland Palace Royal Tennis Court
 		<br>
+		<h4>
+			License for this content: Attribution Share Alike Creative Commons license
+		</h4>
+		<br>
 		<a href="javascript:sourceNode3.start()">Play</a>
+		&nbsp;
 		<a href="javascript:sourceNode3.stop()">Stop</a>
 	</h3>
 	</div>
+
+	<div class = "fixed">
+		<strong> Project by Jaye Sosa.</strong>
+	</div>
 </body>
 </html>
-
-
-
-
-
