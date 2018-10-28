@@ -1,19 +1,4 @@
 
-<!-- <item>
-        <title>The WAV/MP3 Test</title>
-        <itunes:author>Group One</itunes:author>
-        <itunes:subtitle>Can you tell the difference between a WAV and an MP3 file?</itunes:subtitle>
-        <itunes:summary>NYU students in the Audio for the Web Fall 2018 class test their friends to see if any of them can distinguish between WAV files and lossy compressed MP3 files. </itunes:summary>
-        <itunes:image href="https://66.media.tumblr.com/5728320a25968542ed3f6ff513220451/tumblr_ph2ejlTF8S1wb545bo1_1280.png"/>
-        <enclosure url="https://jdion1234.github.io/FINAL%20PODCAST.mp3" length="5382337" type="audio/mpeg"/>
-        <guid> https://jdion1234.github.io/FINAL%20PODCAST.mp3 </guid>
-        <pubDate>Mon, 29 Oct 2018 16:24:22 GMT-0000(EST)</pubDate>
-        <itunes:duration
-
-</item> 
- -->
-
- <!-- ANNIE -->
 <item>
     <title>The WAV/MP3 Test</title>
     <link>
@@ -38,7 +23,6 @@
     <itunes:explicit>no</itunes:explicit>
 </item>
 
- <!-- JAYE-->
 
 <item>
     <title>The Mix: Mixing Basics</title>
@@ -64,7 +48,6 @@
     <itunes:explicit>no</itunes:explicit>
 </item>
 
- <!-- MADELEINE-->
 
 <item>
 	<title>Sounds of the Subway</title>
