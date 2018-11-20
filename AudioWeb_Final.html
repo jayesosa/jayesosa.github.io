@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style>
+html { 
+  background: honeydew; 
+  background-size: cover;
+}
+</style>
+<meta charset="utf-8">
+<title> JayeSosa </title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>jaye sosa</h1>
+<h2> post production sound / dsp / production audio /  </h2>
+
+<div class="dropdown">
+  <button class="dropbtn">PROJECTS</button>
+  <div class="dropdown-content">
+    <a href="./AudioWeb_Final_pg1.html">Post Production</a>
+    <a href="./AudioWeb_Final_pg2.html">Electronics</a>
+    <a href="./AudioWeb_Final_pg3.html">Photo</a>
+  </div>
+</div>
+
+<a class ="link1" href="https://www.linkedin.com/in/jaye-sosa-997620113/" target = "_blank"> LINKEDIN</a> 
+<a class ="link2" href="https://github.com/jayesosa" target = "_blank"> GITHUB</a>
+<a class = "link3" href="JayeSosaResume.pdf" download="Resume"> Download Resume</a>
+
+<div id="mp3_player">
+	<div id="audio_box"></div>
+	<canvas id="analyser"></canvas>
+
+
+</body>
+<script>
+
+ 	// Create an AudioContext instance for this sound
+	var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+	// Create a buffer for the incoming sound content
+	var source = audioContext.createBufferSource();
+// Create the XHR which will grab the audio contents
+	var request = new XMLHttpRequest();
+// Set the audio file src here
+	request.open('GET', 'song.mp3', true);
+// Setting the responseType to arraybuffer sets up the audio decoding
+	request.responseType = 'arraybuffer';
+	request.onload = function() {
+  // Decode the audio once the require is complete
+    audioContext.decodeAudioData(request.response, function(buffer) {
+    source.buffer = buffer;
+    // Connect the audio to source (multiple audio buffers can be connected!)
+    source.connect(audioContext.destination);
+    // Simple setting for the buffer
+    source.loop = true;
+    // Play the sound!
+    source.start(0);
+  	}, function(e) {
+    console.log('Audio error! ', e);
+  	});
+	}
+// Send the request which kicks off 
+	request.send();
+
+
+</script>
+
+
+</html>
