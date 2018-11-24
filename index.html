@@ -35,57 +35,86 @@ html {
 
 </body>
 <script>
+<audio src="song.mp3" controls />
 
- 	 context = new (window.AudioContext || window.webkitAudioContext)();
+//     context = new (window.AudioContext || window.webkitAudioContext)();
    
-    var source = audioContext.createBufferSource();
-// Create the XHR which will grab the audio contents
-	var request = new XMLHttpRequest();
-// Set the audio file src here
-	request.open('GET', 'song.mp3', true);
-// Setting the responseType to arraybuffer sets up the audio decoding
-	request.responseType = 'arraybuffer';
-	request.onload = function() {
-  // Decode the audio once the require is complete
-    audioContext.decodeAudioData(request.response, function(buffer) {
-    source.buffer = buffer;
+//     var source = audioContext.createBufferSource();
+// // Create the XHR which will grab the audio contents
+// 	var request = new XMLHttpRequest();
+// // Set the audio file src here
+// 	request.open('GET', 'song.mp3', true);
+// // Setting the responseType to arraybuffer sets up the audio decoding
+// 	request.responseType = 'arraybuffer';
+// 	request.onload = function() {
+//   // Decode the audio once the require is complete
+//     audioContext.decodeAudioData(request.response, function(buffer) {
+//     source.buffer = buffer;
 
-    source.connect(analyser);
-    analyser.connect(context.destination);
+//     source.connect(analyser);
+//     analyser.connect(context.destination);
 
- 	// Create an AudioContext instance for this sound
-	var audioContext = new (window.AudioContext || window.webkitAudioContext)();
-	const analyser = audioContext.createAnalyser();
-	masterGain.connect(analyser);
+//  	// Create an AudioContext instance for this sound
+// 	var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+// 	const analyser = audioContext.createAnalyser();
+// 	masterGain.connect(analyser);
 
-	const waveform = new Float32Array(analyser.frequencyBinCount)
-	analyser.getFloatTimeDomainData(waveform);
+// 	const waveform = new Float32Array(analyser.frequencyBinCount)
+// 	analyser.getFloatTimeDomainData(waveform);
 
-	;(function updateWaveform() {
-  	requestAnimationFrame(updateWaveform)
- 	 analyser.getFloatTimeDomainData(waveform)
-	})()
+// 	;(function updateWaveform() {
+//   	requestAnimationFrame(updateWaveform)
+//  	 analyser.getFloatTimeDomainData(waveform)
+// 	})()
 
-	const scopeCanvas = document.getElementById('oscilloscope')
-	scopeCanvas.width = waveform.length
-	scopeCanvas.height = 200
-	const scopeContext = scopeCanvas.getContext('2d')
+// 	const scopeCanvas = document.getElementById('oscilloscope')
+// 	scopeCanvas.width = waveform.length
+// 	scopeCanvas.height = 200
+// 	const scopeContext = scopeCanvas.getContext('2d')
 
-	;(function drawOscilloscope() {
-  	requestAnimationFrame(drawOscilloscope)
-  	scopeContext.clearRect(0, 0, scopeCanvas.width, scopeCanvas.height)
-  	scopeContext.beginPath()
-  	for (let i = 0; i < waveform.length; i++) {
-    	const x = i
-    	const y = (0.5 + waveform[i] / 2) * scopeCanvas.height;
-    if (i == 0) {
-      scopeContext.moveTo(x, y)
-    } else {
-      scopeContext.lineTo(x, y)
-    }
-  	}
-  	scopeContext.stroke()
-})()
+// 	;(function drawOscilloscope() {
+//   	requestAnimationFrame(drawOscilloscope)
+//   	scopeContext.clearRect(0, 0, scopeCanvas.width, scopeCanvas.height)
+//   	scopeContext.beginPath()
+//   	for (let i = 0; i < waveform.length; i++) {
+//     	const x = i
+//     	const y = (0.5 + waveform[i] / 2) * scopeCanvas.height;
+//     if (i == 0) {
+//       scopeContext.moveTo(x, y)
+//     } else {
+//       scopeContext.lineTo(x, y)
+//     }
+//   	}
+//   	scopeContext.stroke()
+// })()
+
+//  	// Create an AudioContext instance for this sound
+// 	var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+// 	// Create a buffer for the incoming sound content
+// 	var source = audioContext.createBufferSource();
+// // Create the XHR which will grab the audio contents
+// 	var request = new XMLHttpRequest();
+// // Set the audio file src here
+// 	request.open('GET', 'song.mp3', true);
+// // Setting the responseType to arraybuffer sets up the audio decoding
+// 	request.responseType = 'arraybuffer';
+// 	request.onload = function() {
+//   // Decode the audio once the require is complete
+//     audioContext.decodeAudioData(request.response, function(buffer) {
+//     source.buffer = buffer;
+//     // Connect the audio to source (multiple audio buffers can be connected!)
+//    // source.connect(audioContext.destination);
+//     // Simple setting for the buffer
+//    // source.loop = true;
+//     // Play the sound!
+//    // source.start(0);
+//   //	}, function(e) {
+// //console.log('Audio error! ', e);
+//   //	});
+// //	}
+// // Send the request which kicks off 
+// //	request.send();
+
 </script>
 
 
