@@ -36,6 +36,23 @@ html {
 </body>
 <script>
 
+ 	 context = new (window.AudioContext || window.webkitAudioContext)();
+   
+    var source = audioContext.createBufferSource();
+// Create the XHR which will grab the audio contents
+	var request = new XMLHttpRequest();
+// Set the audio file src here
+	request.open('GET', 'song.mp3', true);
+// Setting the responseType to arraybuffer sets up the audio decoding
+	request.responseType = 'arraybuffer';
+	request.onload = function() {
+  // Decode the audio once the require is complete
+    audioContext.decodeAudioData(request.response, function(buffer) {
+    source.buffer = buffer;
+
+    source.connect(analyser);
+    analyser.connect(context.destination);
+
  	// Create an AudioContext instance for this sound
 	var audioContext = new (window.AudioContext || window.webkitAudioContext)();
 	const analyser = audioContext.createAnalyser();
@@ -69,7 +86,6 @@ html {
   	}
   	scopeContext.stroke()
 })()
-
 </script>
 
 
