@@ -1,0 +1,253 @@
+<!-- 
+Jaye Sosa 
+Audio for the Web Final Project 
+
+Using Web Audio API Pizzicato.js
+https://github.com/alemangui/pizzicato
+
+ -->
+
+<head>
+<style>
+html { 
+  background: honeydew; 
+  background-size: cover;
+}
+</style>
+<meta charset="utf-8">
+<title> JayeSosa </title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>jaye sosa</h1>
+<h2> post (production) sound / dsp / mixing / content creation  </h2>
+
+<div class="dropdown">
+  <button class="dropbtn">PROJECTS</button>
+  <div class="dropdown-content">
+    <a href="./AudioWeb_Final_pg1.html">POST</a>
+    <a href="./AudioWeb_Final_pg2.html">ELECTR</a>
+    <a href="./AudioWeb_Final_pg3.html">COMP</a>
+  </div>
+</div>
+
+<a class ="link1" href="https://www.linkedin.com/in/jaye-sosa-997620113/" target = "_blank"> LINKEDIN</a> 
+<a class ="link2" href="https://github.com/jayesosa" target = "_blank"> GITHUB</a>
+<a class = "link3" href="JayeSosaResume.pdf" download="Resume"> RESUME</a>
+
+<button onclick = "javascript:sound.play(0)" class="button_play">PLAY</button> 
+<button onclick = "javascript:sound.pause()" class="button_pause">PAUSE</button> 
+<button onclick = "javascript:sound.stop()" class="button_stop">STOP</button> 
+
+<p1> <b>DELAY</b> <br><br> feedback <br>time <br> mix</p1>
+<p2> <b>REVERB</b> <br><br> time <br>decay <br> mix</p2>
+<p3> <b>TREMOLO</b> <br><br> speed <br>depth <br> mix</p3>
+<p4> <b>CONVOLUTION</b> <br><br> mix</p4>
+<p5> <b>PAN</b> <br><br> L/R</p5>
+<p6> <b>VOLUME</b></p6>
+
+<!-- Volume slider -->
+<div class="slidecontainer">
+  <input type="range" min="1" max="100" value="50" class="slider_vol" id="vol_range">
+  <p> VOL: <span id="vol"></span></p>
+   <input type="range" min="1" max="100" value="0" class="slider_del" id="del_range">
+  <p> FEEDBACK: <span id="del"></span></p>
+  <input type="range" min="1" max="100" value="0" class="slider_del" id="del_t_range">
+  <p> TIME: <span id="del_t"></span></p>
+  <input type="range" min="1" max="100" value="0" class="slider_del" id="del_m_range">
+  <p> MIX: <span id="del_m"></span></p>
+
+  <input type="range" min="1" max="100" value="0" class="slider_re" id="re_t_range">
+  <p> TIME: <span id="re_t"></span></p>
+  <input type="range" min="1" max="100" value="0" class="slider_re" id="re_d_range">
+  <p> DECAY: <span id="re_d"></span></p>
+  <input type="range" min="1" max="100" value="0" class="slider_re" id="re_m_range">
+  <p> MIX: <span id="re_m"></span></p>
+
+   <input type="range" min="1" max="100" value="0" class="slider_con" id="con_m_range">
+  <p> MIX: <span id="con_m"></span></p>
+
+  <input type="range" min="0" max="100" value="0" class="slider_trem" id="trem_s_range">
+  <p> SPEED: <span id="trem_s"></span></p>
+  <input type="range" min="0" max="100" value="0" class="slider_trem" id="trem_d_range">
+  <p> DEPTH: <span id="trem_d"></span></p>
+  <input type="range" min="0" max="100" value="0" class="slider_trem" id="trem_m_range">
+  <p> MIX: <span id="trem_m"></span></p>
+
+  <input type="range" min="-100" max="100" value="0" class="slider_pan" id="pan_range">
+  <p> PAN: <span id="pan"></span></p>
+</div>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.4/Pizzicato.js"></script>
+<script>
+
+    var sound = new Pizzicato.Sound({ 
+    source: 'file',
+    options: { path: './violin.wav' }
+}, function() {
+    console.log('sound file loaded!');
+    })
+
+    var slider_vol = document.getElementById("vol_range");
+	var output_vol = document.getElementById("vol");
+
+	// Update the current slider value (each time you drag the slider handle)
+	slider_vol.oninput = function() 
+	{
+    	output_vol.innerHTML = this.value;
+    	sound.volume = (this.value) / 100;
+    }
+////////////
+    var delay = new Pizzicato.Effects.Delay({
+    	feedback:0.0,
+    	time: 0.0,
+    	mix: 0.0
+	});
+
+   sound.addEffect(delay);	
+
+	var slider_del = document.getElementById("del_range");
+	var output_del = document.getElementById("del");
+	output_del.innerHTML = slider_del.value;
+	slider_del.oninput = function() 
+	{
+    	output_del.innerHTML = this.value;
+    	delay.feedback = (this.value) / 100;
+    }
+
+    var slider_del_t = document.getElementById("del_t_range");
+	var output_del_t = document.getElementById("del_t");
+	output_del_t.innerHTML = slider_del_t.value;
+	slider_del_t.oninput = function() 
+	{
+    	output_del_t.innerHTML = this.value;
+    	delay.time = (this.value) / 100;
+    }
+
+    var slider_del_m = document.getElementById("del_m_range");
+	var output_del_m = document.getElementById("del_m");
+	output_del_m.innerHTML = slider_del_m.value;
+	slider_del_m.oninput = function() 
+	{
+    	output_del_m.innerHTML = this.value;
+    	delay.mix = (this.value) / 100;
+    }
+////////////
+
+	var reverb = new Pizzicato.Effects.Reverb({
+    	decay: 0.0,
+    	reverse: false,
+    	mix: 0.0
+	});
+
+	sound.addEffect(reverb);
+
+    var slider_re_t = document.getElementById("re_t_range");
+	var output_re_t = document.getElementById("re_t");
+	output_re_t.innerHTML = slider_re_t.value;
+	slider_re_t.oninput = function() 
+	{
+    	output_re_t.innerHTML = this.value;
+    	reverb.time = (this.value) / 100;
+    }
+
+    var slider_re_d = document.getElementById("re_d_range");
+	var output_re_d = document.getElementById("re_d");
+	output_re_d.innerHTML = slider_re_d.value;
+	slider_re_d.oninput = function() 
+	{
+    	output_re_d.innerHTML = this.value;
+    	reverb.decay = (this.value) / 100;
+    }
+
+    var slider_re_m = document.getElementById("re_m_range");
+	var output_re_m = document.getElementById("re_m");
+	output_re_d.innerHTML = slider_re_m.value;
+	slider_re_m.oninput = function() 
+	{
+    	output_re_m.innerHTML = this.value;
+    	reverb.mix = (this.value) / 100;
+    }
+	
+
+/////////
+
+	var convolver = new Pizzicato.Effects.Convolver({
+    	impulse: './dolan.wav'
+	}, 
+	function(error) 
+	{
+    sound.addEffect(convolver);
+	});
+
+	var slider_con_m = document.getElementById("con_m_range");
+	var output_con_m = document.getElementById("con_m");
+	output_con_m.innerHTML = slider_con_m.value;
+	slider_con_m.oninput = function() 
+	{
+    	output_con_m.innerHTML = this.value;
+    	convolver.mix = (this.value) / 100;
+    }
+
+/////////
+
+	var tremolo = new Pizzicato.Effects.Tremolo({
+    speed: 0,
+    depth: 0.0,
+    mix: 0.0
+	});
+
+	sound.addEffect(tremolo);
+
+	var slider_trem_s = document.getElementById("trem_s_range");
+	var output_trem_s = document.getElementById("trem_s");
+	output_trem_s.innerHTML = slider_trem_s.value;
+	slider_trem_s.oninput = function() 
+	{
+    	output_trem_s.innerHTML = this.value;
+    	tremolo.speed = this.value / 5;
+    }
+
+    var slider_trem_d = document.getElementById("trem_d_range");
+	var output_trem_d = document.getElementById("trem_d");
+	output_trem_d.innerHTML = slider_trem_d.value;
+	slider_trem_d.oninput = function() 
+	{
+    	output_trem_d.innerHTML = this.value;
+    	tremolo.depth = this.value / 100;
+    }
+
+    var slider_trem_m = document.getElementById("trem_m_range");
+	var output_trem_m = document.getElementById("trem_m");
+	output_trem_m.innerHTML = slider_trem_m.value;
+	slider_trem_m.oninput = function() 
+	{
+    	output_trem_m.innerHTML = this.value;
+    	tremolo.mix = this.value / 100;
+    }
+
+   ////////
+
+   var stereoPanner = new Pizzicato.Effects.StereoPanner({
+    	pan: 0.5
+	});
+
+   sound.addEffect(stereoPanner);
+	
+	var slider_pan = document.getElementById("pan_range");
+	var output_pan = document.getElementById("pan");
+	output_pan.innerHTML = slider_pan.value;
+
+	slider_pan.oninput = function() 
+	{
+    	output_pan.innerHTML = this.value;
+    	stereoPanner.pan = (this.value) / 100;
+    }
+             
+
+</script> 
+
+
+</html>
